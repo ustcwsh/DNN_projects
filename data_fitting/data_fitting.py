@@ -6,7 +6,13 @@ from random import shuffle
 import os
 
 
+
 figure_path = os.getcwd() + '/figure'
+
+try:
+    os.mkdir("figure")
+except:
+    pass
 
 
 # global parameters
@@ -19,6 +25,7 @@ train_size = int(num_examples*test_fraction)
 training_epochs = 3500
 display_step = training_epochs*0.1
 PLOT_FIGURE = True
+
 
 
 
@@ -48,7 +55,7 @@ def f(x):
 all_x = np.random.uniform(0*np.pi, np.pi, (1, num_examples)).T
 np.random.shuffle(all_x)
 
-############# plt.show()
+
 
 
 # partition data into different sets
@@ -66,7 +73,7 @@ if PLOT_FIGURE:
 
 
 
-############# plt.show()
+
 
 
 
@@ -102,6 +109,10 @@ biases = {
     'h6': tf.Variable(tf.random_normal([n_hidden_6])),
     'out': tf.Variable(tf.random_normal([n_output])),
 }
+
+parameter = {'weights': weights, 'biases': biases}
+
+
 
 
 def NN(input_layer, n):
@@ -179,9 +190,6 @@ sess.run(init)
 
 
 
-
-
-
 for epoch in range(training_epochs):
 
 
@@ -216,6 +224,10 @@ print('Epoch: %03d\tMSE: %.4e'%(epoch+1, c))
 print('Training complete!')
 
 
+saver_weights = tf.train.Saver(weights)
+saver_weights.save(sess, './trained_model/trained_weights.ckpt')
+saver_biases = tf.train.Saver(biases)
+saver_biases.save(sess, './trained_model/trained_biases.ckpt')
 
 
 fig = plt.figure(figsize=(20,8))
