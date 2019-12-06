@@ -10,7 +10,7 @@ A repository of tensorflow codes for different projects
     
   Architecture:
     parameters.py         :  the repository of global parameters
-    data.py               :  the repository of training and test sets
+    data.py               :  the repository of training, validation and test sets
     train_model.py        :  train the neural network
-    run_trained_model.py  :  run the trained neural network
+    run_trained_model.py  :  run the pre-trained neural network
 ```
