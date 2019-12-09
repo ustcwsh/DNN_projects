@@ -1,6 +1,6 @@
-# Tensorflow Codes
+# Deep Neural Network Codes
 
-A repository of tensorflow codes for different projects
+A repository for DNN codes of different projects
 
 ## Data Fitting
 ```txt
