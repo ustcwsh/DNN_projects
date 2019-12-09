@@ -29,14 +29,12 @@ def _DNN(input_data, num_of_hidden_layers):
 _ckpt_reader = tf.train.load_checkpoint('./trained_model/')
 
 (_weights, _biases) = ({str(i): _ckpt_reader.get_tensor('w{:d}'.format(i)) for i in range(8)}, 
-                     {str(i): _ckpt_reader.get_tensor('b{:d}'.format(i)) for i in range(8)})
+                       {str(i): _ckpt_reader.get_tensor('b{:d}'.format(i)) for i in range(8)})
 
 _output = _DNN(data.x_test, par.num_of_hidden_layers)
 
-_var_list = cu.list_variables('./trained_model/')
-
-for i in _var_list:
-    print(i)
+for model_element in cu.list_variables('./trained_model/'):
+    print(model_element)
 
 _fig = plt.figure(figsize = par.figure_size)
 plt.scatter(data.x_test, data.y_test, color='b', label='test set', s=par.marker_size)

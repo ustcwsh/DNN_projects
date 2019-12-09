@@ -16,12 +16,13 @@ _figure_path = os.getcwd() + '/figure'
 
 tf.reset_default_graph()
 
-_X = tf.placeholder(tf.float32, [None, par.neuron_of_layer[0]], name='Input')
-_Y = tf.placeholder(tf.float32, [None, par.neuron_of_layer[-1]], name='Output')
-_weights = {str(i): tf.Variable(tf.random_normal([par.neuron_of_layer[i], par.neuron_of_layer[i+1]]),
-            name = 'w{:d}'.format(i)) for i in range(par.num_of_all_layers-1)}
-_biases = {str(i): tf.Variable(tf.zeros([par.neuron_of_layer[i+1]]), name = 'b{:d}'.format(i))
-            for i in range(par.num_of_all_layers-1)}
+(_X, _Y) = (tf.placeholder(tf.float32, [None, par.neuron_of_layer[0]], name='Input'),
+            tf.placeholder(tf.float32, [None, par.neuron_of_layer[-1]], name='Output'))
+
+(_weights, _biases) = ({str(i): tf.Variable(tf.random_normal([par.neuron_of_layer[i], par.neuron_of_layer[i+1]]),
+                            name = 'w{:d}'.format(i)) for i in range(par.num_of_all_layers-1)},
+                       {str(i): tf.Variable(tf.zeros([par.neuron_of_layer[i+1]]), name = 'b{:d}'.format(i))
+                            for i in range(par.num_of_all_layers-1)})
 
 def _DNN(input_data, num_of_hidden_layers):
     def _build_hidden(num_of_hidden_layers):
