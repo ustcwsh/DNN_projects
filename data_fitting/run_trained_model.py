@@ -28,8 +28,8 @@ def _DNN(input_data, num_of_hidden_layers):
 
 _ckpt_reader = tf.train.load_checkpoint('./trained_model/')
 
-(_weights, _biases) = ({str(i): _ckpt_reader.get_tensor('w{:d}'.format(i)) for i in range(8)}, 
-                       {str(i): _ckpt_reader.get_tensor('b{:d}'.format(i)) for i in range(8)})
+(_weights, _biases) = ({str(i): _ckpt_reader.get_tensor('w{:d}'.format(i)) for i in range(par.num_of_all_layers - 1)}, 
+                       {str(i): _ckpt_reader.get_tensor('b{:d}'.format(i)) for i in range(par.num_of_all_layers - 1)})
 
 _output = _DNN(data.x_test, par.num_of_hidden_layers)
 
