@@ -3,20 +3,28 @@ from random import shuffle
 import parameters as par
 import numpy as np
 
-def _f(x):
-    # return (np.sin(np.pi*x*x) + 0.1*np.random.randn(*x.shape)) * np.cos(x)
-    return np.sin(2.0*np.pi*x)
+x_file = open('./input_data/x.txt')
+y1_file = open('./input_data/y1.txt')
 
-# generate all x datapoints
-_all_x = np.random.uniform(0*np.pi, np.pi, (1, par.num_examples)).T
-np.random.shuffle(_all_x)
+x_origin = [float(x.rstrip()) for x in x_file.readlines()]
+y_origin = [float(x.rstrip()) for x in y1_file.readlines()]
+y_scale = max(y_origin)-min(y_origin)
+y_mean = np.mean(y_origin)
+y_scaled = [(y-y_mean)/y_scale for y in y_origin]
 
-# partition data into different sets
-(x_training, x_validation, x_test) = (_all_x[:par.training_set_size],
-									  _all_x[par.training_set_size: par.training_set_size + par.validation_set_size],
-									  _all_x[par.training_set_size + par.validation_set_size:])
+x_file.close()
+y1_file.close()
 
-(y_training, y_validation, y_test) = (_f(x) for x in(x_training, x_validation, x_test))
+xy = np.array(list(zip(x_origin, y_scaled)))
+np.random.shuffle(xy)
 
+x = np.array([[i] for i in xy[:,0]])
+y = np.array([[i] for i in xy[:,1]])
 
+(x_training, x_validation, x_test) = (x[:par.training_set_size],
+									  x[par.training_set_size: par.training_set_size + par.validation_set_size],
+									  x[par.training_set_size + par.validation_set_size:])
 
+(y_training, y_validation, y_test) = (y[:par.training_set_size],
+									  y[par.training_set_size: par.training_set_size + par.validation_set_size],
+									  y[par.training_set_size + par.validation_set_size:])

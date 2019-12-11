@@ -43,7 +43,10 @@ def _DNN(input_data, num_of_hidden_layers):
 
 _output = _DNN(_X, par.num_of_hidden_layers)
 _cost = tf.reduce_mean(tf.square(_output - _Y))
-_optimizer = tf.train.AdamOptimizer().minimize(tf.nn.l2_loss(_output - _Y))
+loss = tf.nn.l2_loss(_output - _Y)
+for key in _weights:
+    loss += tf.nn.l2_loss(_weights[key]) * par.lambd/2/par.num_examples
+_optimizer = tf.train.AdamOptimizer().minimize(loss)
 
 _sess = tf.InteractiveSession()
 _init = tf.global_variables_initializer()
@@ -65,7 +68,7 @@ for epoch in range(1, par.training_epochs+1):
     mse = _sess.run(tf.nn.l2_loss(_output - data.y_validation), feed_dict={_X: data.x_validation})
     
     if not epoch % par.display_step :
-        print('Epoch: %0*d\tCost : %.6f'%(par.training_epochs_digits, epoch, c))
+        print('Epoch: %0*d\tCost : %.6f\t\tMSE : %.6f'%(par.training_epochs_digits, epoch, c, mse))
         if par.PLOT_FIGURE:
             fig = plt.figure(figsize=par.figure_size)
             plt.scatter(data.x_validation, data.y_validation, color='b', label='validation set', s=par.marker_size)

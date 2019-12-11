@@ -1,11 +1,12 @@
 # Customize global parameters here.
-num_examples = 5000
+num_examples = 1000
+training_epochs = 3000
+lambd = 1.0
 validation_fraction = 0.1
 test_fraction = 0.1
 validation_set_size = int(num_examples*validation_fraction)
 test_set_size = int(num_examples*test_fraction)
 training_set_size = num_examples - validation_set_size - test_set_size
-training_epochs = 1000
 training_epochs_digits = len(list(str(training_epochs)))
 display_step = int(training_epochs*0.1)
 PLOT_FIGURE = True
