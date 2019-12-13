@@ -4,7 +4,7 @@
 
 <pre>
 Required Package Version:
-    python     =  3.6.9
-    tensorflow =  1.7.0
-    pytorch    =  1.3.1
+    Python     =  3.6.9
+    TensorFlow =  1.7.0
+    PyTorch    =  1.3.1
 </pre>
