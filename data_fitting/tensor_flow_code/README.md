@@ -2,9 +2,9 @@
 
 *__Files:__*
 
-* data.py               :  customize training, validation and test sets
-* data_fitting.ipynb    :  run all process in jupyter notebook
-* parameters.py         :  customize global parameters
-* run_trained_model.py  :  run the pre-trained DNN
-* train_model.py        :  train the DNN
+* _data.py_               :  customize training, validation and test sets
+* _data_fitting.ipynb_    :  run all process in jupyter notebook
+* _parameters.py_         :  customize global parameters
+* _run_trained_model.py_  :  run the pre-trained DNN
+* _train_model.py_        :  train the DNN
 
