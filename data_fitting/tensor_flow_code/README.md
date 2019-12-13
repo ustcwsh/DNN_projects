@@ -1,6 +1,6 @@
 ## TensorFlow Codes
 
-*__File Details:__*
+*__Files:__*
 * parameters.py         :  customize global parameters
 * data.py               :  customize training, validation and test sets
 * train_model.py        :  train the DNN
