@@ -1,16 +1,10 @@
-# Deep Neural Network Codes
+## Repositories of Deep Neural Network Projects
 
-A repository for DNN codes of different projects
+* _**General Data Fitting**_
 
-## Data Fitting
-```txt
-  Usage: Given a set of data points (x, y), find a proper mapping between x and y.
-    
-  Tensorflow Version: 1.7.0 (lower than 2.0.0 should be fine)
-    
-  Architecture:
-    parameters.py         :  the repository of global parameters
-    data.py               :  the repository of training, validation and test sets
-    train_model.py        :  train the neural network
-    run_trained_model.py  :  run the pre-trained neural network
-```
+<pre>
+Required Package Version:
+    python     =  3.6.9
+    tensorflow =  1.7.0
+    pytorch    =  1.3.1
+</pre>
